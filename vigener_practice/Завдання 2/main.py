@@ -54,7 +54,7 @@ if __name__ == "__main__":
     for block in blocks:
         b_count, b_stats = get_char_stats(block)
         o = max(b_count, key = b_count.get)
-        k_o = (ab_rus.index(o) - ab_rus.index("о")) % 26
+        k_o = (ab_rus.index(o) - ab_rus.index("о")) % len(ab_rus)
         key += ab_rus[k_o]
     print(key)
 
@@ -76,12 +76,12 @@ if __name__ == "__main__":
     for block in blocks:
         b_count, b_stats = get_char_stats(block)
         g_s = {}
-        for g in range(0, 26):
+        for g in range(0, len(ab_rus)):
             s = 0
             for b in block:
                 b_i = ab_rus.index(b)
                 try:
-                    s += open_stats[b] * b_count[ab_rus[(b_i + g) % 26]]
+                    s += open_stats[b] * b_count[ab_rus[(b_i + g) % len(ab_rus)]]
                 except KeyError:
                     continue
 
